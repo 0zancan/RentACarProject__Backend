@@ -13,7 +13,6 @@ namespace Business.Concrete
 
         public BrandManager()
         {
-
         }
 
         public BrandManager(IBrandDal branDal)
@@ -23,7 +22,12 @@ namespace Business.Concrete
 
         public List<Brand> GetAll()
         {
-            return _brandDal.GetCarsByBrandId();
+            return _brandDal.GetAll();
+        }
+
+        public List<Brand> GetBrandById(int id)
+        {
+            return _brandDal.GetAll(x => x.Id == id);
         }
     }
 }
