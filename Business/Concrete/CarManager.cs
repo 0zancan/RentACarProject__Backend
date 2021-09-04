@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -21,24 +23,47 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public List<Car> GetAll()
+        public IResult AddCar(Car car)
         {
-            return _carDal.GetAll();
+            if (car.Name.Length < 2)
+            {
+                return new ErrorResult(Messages.CarNameInvalid);
+            }
+
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        public List<Car> GetCarByBrandId(int brandId)
+        public IResult DeleteCar(Car car)
         {
-            return _carDal.GetAll(x=>x.BrandId == brandId);
+            _carDal.Delete(car);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public List<Car> GetCarByColorId(int colorId)
+        public IDataResult<List<Car>> GetAllCar()
         {
-            return _carDal.GetAll(x => x.Id == colorId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
 
-        public List<CarDetailsDto> GetCarDetails()
+        public IDataResult<List<Car>> GetCarByBrandId(int brandId)
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(x => x.BrandId == brandId), Messages.CarsListed);
+        }
+
+        public IDataResult<List<Car>> GetCarByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(x => x.Id == colorId), Messages.CarsListed);
+        }
+
+        public IDataResult<List<CarDetailsDto>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(), Messages.CarsListed);
+        }
+
+        public IResult UpdateCar(Car car)
+        {
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
         }
     }
 }
