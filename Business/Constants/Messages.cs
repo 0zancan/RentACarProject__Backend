@@ -28,13 +28,13 @@ namespace Business.Constants
 
         //CarImage
         public static string CarImagAdded = "Araba görseli eklendi.";
-        public static string CarImageRemoved = "Araba görseli kaldırıldı.";
+        public static string CarImageDeleted = "Araba görseli kaldırıldı.";
         public static string CarImageUpdated = "Araba görseli güncellendi.";
         public static string CarImageNotFound = "Girilen parametlere uygun kayıt bulunamadı.";
         public static string CarImagesListed = "Araba görselleri listelenedi.";
+        public static string ImagePathExist = "Görsel pathi bulunamadı.";
 
         //General
         public static string MaintenanceTime = "Sistem Bakımda.";
-
     }
 }

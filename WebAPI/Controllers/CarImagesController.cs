@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -16,9 +17,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(CarImage carImage)
+        public IActionResult Add([FromForm] IFormFile formFile, [FromForm] CarImage carImage)
         {
-            var result = _carImageService.AddCarImage(carImage);
+            var result = _carImageService.AddCarImage(formFile, carImage);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -27,9 +28,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(CarImage carImage)
+        public IActionResult Delete([FromForm] IFormFile formFile, [FromForm] CarImage carImage)
         {
-            var result = _carImageService.DeleteCarImage(carImage);
+            var result = _carImageService.DeleteCarImage(formFile, carImage);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -38,9 +39,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(CarImage carImage)
+        public IActionResult Update([FromForm] IFormFile formFile, [FromForm] CarImage carImage)
         {
-            var result = _carImageService.UpdateCarImage(carImage);
+            var result = _carImageService.UpdateCarImage(formFile, carImage);
             if (result.Success)
             {
                 return Ok(result.Message);
