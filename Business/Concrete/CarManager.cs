@@ -16,10 +16,6 @@ namespace Business.Concrete
     {
         ICarDal _carDal;
 
-        public CarManager()
-        {
-        }
-
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
@@ -63,5 +59,6 @@ namespace Business.Concrete
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
+
     }
 }

@@ -13,7 +13,6 @@ namespace Business.Constants
         public static string CarDeleted = "Araba silindi";
         public static string CarUpdated = "Araba güncellendi";
 
-
         //Brand
         public static string BrandNameInvalid = "Marka adı geçersiz.";
         public static string BrandAdded = "Marka eklendi";
@@ -27,9 +26,15 @@ namespace Business.Constants
         public static string ColorUpdated = "Renk güncellendi";
         public static string ColorsListed = "Renkler listelendi.";
 
+        //CarImage
+        public static string CarImagAdded = "Araba görseli eklendi.";
+        public static string CarImageRemoved = "Araba görseli kaldırıldı.";
+        public static string CarImageUpdated = "Araba görseli güncellendi.";
+        public static string CarImageNotFound = "Girilen parametlere uygun kayıt bulunamadı.";
+        public static string CarImagesListed = "Araba görselleri listelenedi.";
+
         //General
         public static string MaintenanceTime = "Sistem Bakımda.";
 
-        
     }
 }
