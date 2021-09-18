@@ -9,6 +9,10 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Utilities.Aspects.Autofac.Caching;
+using Core.Utilities.Aspects.Autofac.Performance;
+using Core.Utilities.Aspects.Autofac.Transaction;
+using Business.BusinessAspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -21,11 +25,19 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [SecuredOperation("admin,product.add")]
+        [CacheRemoveAspect("ICarService.Get")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult AddCar(Car car)
         {
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
+        }
+
+        // TO DO
+        public IResult AddTransactionalTest(Car car)
+        {
+            throw new NotImplementedException();
         }
 
         public IResult DeleteCar(Car car)
@@ -54,6 +66,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(), Messages.CarsListed);
         }
 
+        [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("IProductCar.Get")]
         public IResult UpdateCar(Car car)
         {
             _carDal.Update(car);

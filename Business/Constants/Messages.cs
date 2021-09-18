@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -36,5 +37,14 @@ namespace Business.Constants
 
         //General
         public static string MaintenanceTime = "Sistem Bakımda.";
+
+
+        public static string AuthorizationDenied = "Yetkisi yok.";
+        internal static string UserRegistered = "Kullanıcı kayıt oldu.";
+        internal static string UserNotFound = "Kullanıcı bulunamadı.";
+        internal static string PasswordError = "Şifre hatalı.";
+        internal static string SuccessfulLogin = "Giriş yapıldı.";
+        internal static string UserAlreadyExists = "Kullanıcı zaten mevcut.";
+        internal static string AccessTokenCreated = "Token oluşturuldu.";
     }
 }

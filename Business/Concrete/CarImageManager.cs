@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers.FileHelpers;
@@ -25,6 +26,7 @@ namespace Business.Concrete
 
         private string sourcePath = "C:\\Users\\W10\\source\\repos\\RentACarProject_Backend\\_Gallery\\";
 
+        [SecuredOperation("admin,product.add")]
         public IResult AddCarImage(IFormFile formFile, CarImage carImage)
         {
             IResult result = BusinessRules.Run(CheckIfImageCountOfCarCorrect(carImage.CarId));
@@ -66,6 +68,12 @@ namespace Business.Concrete
         public IDataResult<List<CarImage>> GetCarImagesByCarId(int carId)
         {
             var carImages = _carImageDal.GetAll(x => x.CarId == carId).ToList();
+
+            //if (carImages.Count() == 0)
+            //{
+            //    // ???????????? TO DO
+            //    carImages.ImagePath = FileUpload.GetDefaultImagePath();
+            //}
 
             foreach (var carImage in carImages)
             {
