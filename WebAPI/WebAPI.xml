@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPI.Controllers.AuthController.Login(Entities.Dtos.UserForLoginDto)">
+            <summary>
+            Login for registered users
+            </summary>
+            <param name="userForLoginDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.AuthController.Register(Entities.Dtos.UserForRegisterDto)">
+            <summary>
+            Register for new users
+            </summary>
+            <param name="userForRegisterDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.CarImagesController.Add(Microsoft.AspNetCore.Http.IFormFile,Entities.Concrete.CarImage)">
+            <summary>
+            Add car image
+            </summary>
+            <param name="formFile"></param>
+            <param name="carImage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.CarImagesController.Delete(Microsoft.AspNetCore.Http.IFormFile,Entities.Concrete.CarImage)">
+            <summary>
+            Delete car image
+            </summary>
+            <param name="formFile"></param>
+            <param name="carImage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.CarImagesController.Update(Microsoft.AspNetCore.Http.IFormFile,Entities.Concrete.CarImage)">
+            <summary>
+            Update car image
+            </summary>
+            <param name="formFile"></param>
+            <param name="carImage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Controllers.CarImagesController.Get(System.Int32)">
+            <summary>
+            Get car images
+            </summary>
+            <param name="carId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

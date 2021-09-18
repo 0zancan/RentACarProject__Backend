@@ -19,6 +19,11 @@ namespace WebAPI.Controllers
             _authService = authService;
         }
 
+        /// <summary>
+        /// Login for registered users
+        /// </summary>
+        /// <param name="userForLoginDto"></param>
+        /// <returns></returns>
         [HttpPost("login")]
         public ActionResult Login(UserForLoginDto userForLoginDto)
         {
@@ -37,6 +42,11 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+        /// <summary>
+        /// Register for new users
+        /// </summary>
+        /// <param name="userForRegisterDto"></param>
+        /// <returns></returns>
         [HttpPost("register")]
         public ActionResult Register(UserForRegisterDto userForRegisterDto)
         {

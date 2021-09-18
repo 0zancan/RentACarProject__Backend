@@ -16,6 +16,12 @@ namespace WebAPI.Controllers
             _carImageService = carImageService;
         }
 
+        /// <summary>
+        /// Add car image
+        /// </summary>
+        /// <param name="formFile"></param>
+        /// <param name="carImage"></param>
+        /// <returns></returns>
         [HttpPost("add")]
         public IActionResult Add([FromForm] IFormFile formFile, [FromForm] CarImage carImage)
         {
@@ -27,6 +33,13 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+
+        /// <summary>
+        /// Delete car image
+        /// </summary>
+        /// <param name="formFile"></param>
+        /// <param name="carImage"></param>
+        /// <returns></returns>
         [HttpPost("delete")]
         public IActionResult Delete([FromForm] IFormFile formFile, [FromForm] CarImage carImage)
         {
@@ -38,6 +51,12 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+        /// <summary>
+        /// Update car image
+        /// </summary>
+        /// <param name="formFile"></param>
+        /// <param name="carImage"></param>
+        /// <returns></returns>
         [HttpPost("update")]
         public IActionResult Update([FromForm] IFormFile formFile, [FromForm] CarImage carImage)
         {
@@ -49,6 +68,11 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+        /// <summary>
+        /// Get car images
+        /// </summary>
+        /// <param name="carId"></param>
+        /// <returns></returns>
         [HttpPost("get")]
         public IActionResult Get(int carId)
         {
