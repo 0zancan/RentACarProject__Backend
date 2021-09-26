@@ -30,6 +30,7 @@ namespace WebAPI
             services.AddControllers();
             //services.AddSingleton<ICarService, CarManager>();
             //services.AddSingleton<ICarDal, EfCarDal>();
+            services.AddCors();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -57,28 +58,32 @@ namespace WebAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Rent A Car Web API", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+
+                var securityScheme = new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
-                });
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT"
+                };
 
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-                {
-                 new OpenApiSecurityScheme
-                 {
-                   Reference = new OpenApiReference
+                var securityRequirement = new OpenApiSecurityRequirement {
+                  {
+                   new OpenApiSecurityScheme
                    {
-                     Type = ReferenceType.SecurityScheme,
-                     Id = "Bearer"
-                   }
-                  },
-                  new string[] { }
-                }
-              });
+                     Reference = new OpenApiReference
+                     {
+                         Type = ReferenceType.SecurityScheme,
+                         Id = "BearerAuth"
+                     }
+                   },
+                    new string[] { }
+                  }
+                };
+                c.AddSecurityDefinition("BearerAuth", securityScheme);
+                c.AddSecurityRequirement(securityRequirement);
             });
 
         }
@@ -91,8 +96,8 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
             app.UseHttpsRedirection();
-
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

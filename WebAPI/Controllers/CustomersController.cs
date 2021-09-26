@@ -6,19 +6,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-        ICarService _carService;
+        ICustomerService _customerService;
 
-        public CarsController(ICarService carService)
+        public CustomersController(ICustomerService customerService)
         {
-            _carService = carService;
+            _customerService = customerService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _carService.GetAllCar();
+            var result = _customerService.GetAllCustomers();
             if (result.Success)
             {
                 return Ok(result);
@@ -26,32 +26,10 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getcardetails")]
-        public IActionResult GetCarDetails()
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
         {
-            var result = _carService.GetCarDetails();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result.Message);
-        }
-
-        [HttpGet("getbybrand")]
-        public IActionResult GetByBrand(int id)
-        {
-            var result = _carService.GetCarDetailsByBrandId(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result.Message);
-        }
-
-        [HttpGet("getbycolor")]
-        public IActionResult GetByColor(int id)
-        {
-            var result = _carService.GetCarDetailsByColorId(id);
+            var result = _customerService.GetCustomerById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -60,9 +38,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Car car)
+        public IActionResult Add(Customer customer)
         {
-            var result = _carService.AddCar(car);
+            var result = _customerService.AddCustomer(customer);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -70,6 +48,26 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+        [HttpPost("delete")]
+        public IActionResult Delete(Customer customer)
+        {
+            var result = _customerService.DeleteCustomer(customer);
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);
+        }
 
+        [HttpPost("update")]
+        public IActionResult Update(Customer customer)
+        {
+            var result = _customerService.UpdateCustomer(customer);
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);
+        }
     }
 }

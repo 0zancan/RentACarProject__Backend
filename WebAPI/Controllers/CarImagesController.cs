@@ -79,7 +79,7 @@ namespace WebAPI.Controllers
             var result = _carImageService.GetCarImagesByCarId(carId);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }

@@ -66,6 +66,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(), Messages.CarsListed);
         }
 
+        public IDataResult<List<CarDetailsDto>> GetCarDetailsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetailsByBrandId(brandId), Messages.CarsListed);
+        }
+
+        public IDataResult<List<CarDetailsDto>> GetCarDetailsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetailsByColorId(colorId), Messages.CarsListed);
+        }
+
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("IProductCar.Get")]
         public IResult UpdateCar(Car car)
